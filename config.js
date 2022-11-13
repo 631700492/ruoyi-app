@@ -13,6 +13,7 @@ module.exports = {
     logo: "/static/logo.png",
     // 官方网站
     site_url: "http://ruoyi.vip",
+	openid: "",
     // 政策协议
     agreements: [{
         title: "隐私政策",

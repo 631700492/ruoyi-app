@@ -1,7 +1,7 @@
 <script>
   import config from './config'
   import store from '@/store'
-  import { getToken } from '@/utils/auth'
+  import { getToken,setToken } from '@/utils/auth'
   
 
   export default {
@@ -23,13 +23,13 @@
         this.globalData.config = config
       },
 	  getWeiXin(){
+
 		  //获取code
 		  wx.login({
 		  				  success:(res)=>{
 		  					  console.log(res)
-							  console.log("code   :"+res.code)
 							  this.globalData.config.code=res.code
-							  console.log("this.globalData.config.code   :"+this.globalData.config.code)
+							  // console.log("this.globalData.config.code   :"+this.globalData.config.code)
 		  					  
 							  //获取openid
 							  uni.request({
@@ -38,11 +38,13 @@
 							        url: this.globalData.config.baseUrl+'/weixin/login',
 							        success:(res)=>{
 							          console.log(res)
-							          this.globalData.config.openid=res.openid
-									  if(res.data.code==500){
+							          this.globalData.config.openid=res.data.openid   
+									  if(res.data.code==500){ 
 										  console.log("openId 不存在！"+res)
 										  this.$tab.reLaunch('/pages/register')
 									  }
+									  setToken(res.data.token)
+									  this.$tab.reLaunch('/pages/index')
 							        }
 									
 							      })
@@ -55,7 +57,7 @@
       checkLogin() {
 		 
         if (!getToken()) {
-          this.$tab.reLaunch('/pages/login') 
+          this.$tab.reLaunch('/pages/register') 
         }
       }
     }
