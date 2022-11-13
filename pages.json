@@ -4,6 +4,11 @@
     "style": {
       "navigationBarTitleText": "登录"
     }
+  },{
+    "path": "pages/register",
+    "style": {
+      "navigationBarTitleText": "信息注册"
+    }
   }, {
     "path": "pages/index",
     "style": {

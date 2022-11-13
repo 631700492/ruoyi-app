@@ -7,6 +7,8 @@ module.exports = {
     name: "ruoyi-app",
     // 应用版本
     version: "1.0.0",
+	// 程序 app / web  /weixin
+	program: "weixin",
     // 应用logo
     logo: "/static/logo.png",
     // 官方网站

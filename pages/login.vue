@@ -39,7 +39,7 @@
     data() {
       return {
         codeUrl: "",
-        captchaEnabled: true,
+        captchaEnabled: false,
         globalConfig: getApp().globalData.config,
         loginForm: {
           username: "admin",
@@ -88,14 +88,16 @@
       },
       // 密码登录
       async pwdLogin() {
-        this.$store.dispatch('Login', this.loginForm).then(() => {
+        /* this.$store.dispatch('Login', this.loginForm).then(() => {
           this.$modal.closeLoading()
           this.loginSuccess()
         }).catch(() => {
           if (this.captchaEnabled) {
             this.getCode()
           }
-        })
+        }) */
+		console.log("1234567")
+		this.$tab.reLaunch('/pages/index')
       },
       // 登录成功后，处理函数
       loginSuccess(result) {

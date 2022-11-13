@@ -1,11 +1,11 @@
 import { getToken } from '@/utils/auth'
 
 // 登录页面
-const loginPage = "/pages/login"
+const loginPage = "/pages/register"
   
 // 页面白名单
 const whiteList = [
-  '/pages/login', '/pages/common/webview/index'
+  '/pages/login','/pages/register', '/pages/common/webview/index'
 ]
 
 // 检查地址白名单
@@ -19,7 +19,7 @@ let list = ["navigateTo", "redirectTo", "reLaunch", "switchTab"]
 list.forEach(item => {
   uni.addInterceptor(item, {
     invoke(to) {
-      if (getToken()) {
+     if (getToken()) {
         if (to.path === loginPage) {
           uni.reLaunch({ url: "/" })
         }
