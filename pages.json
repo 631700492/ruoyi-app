@@ -21,6 +21,11 @@
       "navigationBarTitleText": "工作台"
     }
   }, {
+    "path": "pages/rental/index",
+    "style": {
+      "navigationBarTitleText": "租车"
+    }
+  }, {
     "path": "pages/mine/index",
     "style": {
       "navigationBarTitleText": "我的"
@@ -83,10 +88,15 @@
         "text": "首页"
       }, {
         "pagePath": "pages/work/index",
+        "iconPath": "static/images/tabbar/zuche.png",
+        "selectedIconPath": "static/images/tabbar/zuche_.png",
+        "text": "租车"
+      }, {
+        "pagePath": "pages/rental/index",
         "iconPath": "static/images/tabbar/work.png",
         "selectedIconPath": "static/images/tabbar/work_.png",
         "text": "工作台"
-      }, {
+      },{
         "pagePath": "pages/mine/index",
         "iconPath": "static/images/tabbar/mine.png",
         "selectedIconPath": "static/images/tabbar/mine_.png",

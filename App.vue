@@ -25,9 +25,9 @@
 	  getWeiXin(){
 
 		  //获取code
-		  wx.login({
+		  wx.login({ 
 		  				  success:(res)=>{
-		  					  console.log(res)
+		  					  console.log(res) 
 							  this.globalData.config.code=res.code
 							  // console.log("this.globalData.config.code   :"+this.globalData.config.code)
 		  					  
