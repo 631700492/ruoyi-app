@@ -11,44 +11,31 @@
 			</swiper>
 		</uni-swiper-dot>
 
-		<view class="u-demo-block">
-			<text class="u-demo-block__title">基础使用</text>
-			<view class="u-demo-block__content">
-				<u-row customStyle="margin-bottom: 10px">
-					<u-col span="6">
-						<view class="demo-layout bg-purple-light"></view>
-					</u-col>
-					<u-col span="6">
-						<view class="demo-layout bg-purple"></view>
-					</u-col>
-				</u-row>
-				<u-row customStyle="margin-bottom: 10px">
-					<u-col span="4">
-						<view class="demo-layout bg-purple"></view>
-					</u-col>
-					<u-col span="4">
-						<view class="demo-layout bg-purple-light"></view>
-					</u-col>
-					<u-col span="4">
-						<view class="demo-layout bg-purple-dark"></view>
-					</u-col>
-				</u-row>
-				<u-row justify="space-between">
-					<u-col span="3">
-						<view class="demo-layout bg-purple">5</view>
-					</u-col>
-					<u-col span="3">
-						<view class="demo-layout bg-purple-light">4</view>
-					</u-col>
-					<u-col span="3">
-						<view class="demo-layout bg-purple">3</view>
-					</u-col>
-					<u-col span="3">
-						<view class="demo-layout bg-purple-light">2</view>
-					</u-col>
-				</u-row>
-			</view>
-		</view>
+
+		<uni-section title="本地数据" type="line">
+			<u-row customStyle="margin-bottom: 10px">
+				<u-col span="3">
+					<u-list>
+						<u-list-item v-for="(item, index) in indexList" :key="index">
+							<u-cell :title="`列表长度-${index + 1}`">
+								<u-avatar size="35" :src="item.url" customStyle="margin: -3px 5px -3px 0"></u-avatar>
+							</u-cell>
+						</u-list-item>
+					</u-list>
+				</u-col>
+				<u-col span="9">
+					<uni-section title="卡片封面图+操作栏" type="line">
+						<uni-card :cover="cover" @click="onClick">
+							<image slot='cover' style="width: 100%;" :src="cover"></image>
+							<text class="uni-body">这是一个带封面和操作栏的卡片示例，此示例展示了封面插槽和操作栏插槽的用法。</text>
+							
+						</uni-card>
+					</uni-section>
+				</u-col>
+			</u-row>
+
+		</uni-section>
+
 	</view>
 
 </template>
@@ -62,31 +49,8 @@
 				current: 0,
 				swiperDotIndex: 0,
 				data: [],
-				value1: '1',
-				value2: '2',
-				show: true,
-				options1: [{
-						label: '默认排序',
-						value: 1,
-					},
-					{
-						label: '距离优先',
-						value: 2,
-					},
-					{
-						label: '价格优先',
-						value: 3,
-					}
-				],
-				options2: [{
-						label: '去冰',
-						value: 1,
-					},
-					{
-						label: '加冰',
-						value: 2,
-					},
-				]
+				cover:'static/images/banner/banner01.jpg',
+				indexList: ['标题1', '标题1', '标题1', '标题1', '标题1']
 			}
 		},
 		created() {

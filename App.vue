@@ -57,9 +57,11 @@
 	  
       checkLogin() {
 		 
-        if (!getToken()) {
+        if (!getToken() && config.appInfo.program == 'weixin') {
           this.$tab.reLaunch('/pages/register') 
-        }
+        }else{
+			this.$tab.reLaunch('/pages/login') 
+		}
       }
     }
   }
