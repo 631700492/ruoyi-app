@@ -11,7 +11,10 @@ Vue.prototype.$store = store
 App.mpType = 'app'
 
 const app = new Vue({
-  ...App
+	...App
 })
+import uView from '@/node_modules/uview-ui'
+Vue.use(uView)
+uni.$u.config.unit = 'rpx'
 
 app.$mount()

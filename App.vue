@@ -2,6 +2,7 @@
   import config from './config'
   import store from '@/store'
   import { getToken,setToken } from '@/utils/auth'
+
   
 
   export default {
@@ -65,5 +66,6 @@
 </script>
 
 <style lang="scss">
-  @import '@/static/scss/index.scss'
+  @import '@/static/scss/index.scss';
+  @import '@/node_modules/uview-ui/theme.scss'
 </style>

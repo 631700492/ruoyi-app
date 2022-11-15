@@ -1,4 +1,12 @@
 {
+  "easycom": {
+    "actoscan": true,
+    "custom": {
+      // uview (记录一下：npm方式安装依赖的 切记 不用加上'@'、不用加上＋'/'，有其他的插件时，尽量把uviewUI放在第一位)
+      // "^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue" 错误的配置
+      "^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+    }
+  },
   "pages": [{
     "path": "pages/login",
     "style": {
@@ -23,7 +31,8 @@
   }, {
     "path": "pages/rental/index",
     "style": {
-      "navigationBarTitleText": "租车"
+      "navigationBarTitleText": "租车",
+      "enablePullDownRefresh":true
     }
   }, {
     "path": "pages/mine/index",
@@ -87,12 +96,12 @@
         "selectedIconPath": "static/images/tabbar/home_.png",
         "text": "首页"
       }, {
-        "pagePath": "pages/work/index",
-        "iconPath": "static/images/tabbar/zuche.png",
-        "selectedIconPath": "static/images/tabbar/zuche_.png",
+        "pagePath": "pages/rental/index",
+        "iconPath": "static/images/tabbar/home.png",
+        "selectedIconPath": "static/images/tabbar/home_.png",
         "text": "租车"
       }, {
-        "pagePath": "pages/rental/index",
+        "pagePath": "pages/work/index",
         "iconPath": "static/images/tabbar/work.png",
         "selectedIconPath": "static/images/tabbar/work_.png",
         "text": "工作台"
