@@ -12,29 +12,52 @@
 		</uni-swiper-dot>
 
 
-		<uni-section title="本地数据" type="line">
-			<u-row customStyle="margin-bottom: 10px">
-				<u-col span="3">
-					<u-list>
-						<u-list-item v-for="(item, index) in indexList" :key="index">
-							<u-cell :title="`列表长度-${index + 1}`">
-								<u-avatar size="35" :src="item.url" customStyle="margin: -3px 5px -3px 0"></u-avatar>
-							</u-cell>
-						</u-list-item>
-					</u-list>
-				</u-col>
-				<u-col span="9">
-					<uni-section title="卡片封面图+操作栏" type="line">
-						<uni-card :cover="cover" @click="onClick">
-							<image slot='cover' style="width: 100%;" :src="cover"></image>
-							<text class="uni-body">这是一个带封面和操作栏的卡片示例，此示例展示了封面插槽和操作栏插槽的用法。</text>
-							
-						</uni-card>
-					</uni-section>
-				</u-col>
-			</u-row>
 
-		</uni-section>
+		<u-row>
+			<!-- <u-list>
+					<u-list-item v-for="(item, index) in indexList" :key="index">
+						<u-cell :title="`列表长度-${index + 1}`">
+							<u-avatar size="35" :src="item.url" customStyle="margin: -3px 5px -3px 0"></u-avatar>
+						</u-cell>
+					</u-list-item>
+				</u-list> -->
+			<u-tabs :list="list2" style="margin-top: 20px;font-size:24px!important;"  @click="checkCarType" :activeStyle="{
+			            color: '#00aaff',
+			            fontWeight: 'bold',
+			            transform: 'scale(1.05)'
+			        }" :inactiveStyle="{
+			            color: '#606266',
+			            transform: 'scale(1)'
+			        }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;"></u-tabs>
+		</u-row>
+
+		<view class="u-page">
+			<u-list @scrolltolower='scrolltolower' :enableBackToTop="true">
+				<u-list-item v-for="(item, index) in carList" :key="index">
+
+					<uni-card :is-shadow="false">
+
+						<u-row>
+							<u-col :span="4">
+								<u--image :src="imageUrl +item.images" :fade="true" duration="450" 
+								:width='170'
+								:height='170'></u--image>
+							</u-col>
+							<u-col :span="8">
+								<text>{{item.carName}}</text>
+								<text>{{item.carPrice}}</text>
+								<text>{{item.carMemo}}</text>
+							</u-col>
+						</u-row>
+		
+					</uni-card>
+
+				</u-list-item>
+			</u-list>
+
+		</view>
+
+
 
 	</view>
 
@@ -49,12 +72,25 @@
 				current: 0,
 				swiperDotIndex: 0,
 				data: [],
-				cover:'static/images/banner/banner01.jpg',
-				indexList: ['标题1', '标题1', '标题1', '标题1', '标题1']
+				carList: [],
+				carType: "0",
+				cover: 'static/images/banner/banner01.jpg',
+				list2: [{
+					name: '所有类型'
+				}, {
+					name: '经济型'
+				}, {
+					name: '商务型'
+				}, {
+					name: 'SUV'
+				}, {
+					name: '豪华型'
+				}]
 			}
 		},
 		created() {
 			this.getLunboTu();
+			this.scrolltolower()
 		},
 		onPullDownRefresh() {
 			console.log('refresh');
@@ -63,6 +99,9 @@
 			}, 1000);
 		},
 
+		/* onLoad() {
+			this.scrolltolower()
+		}, */
 		methods: {
 			getLunboTu() {
 				var that = this
@@ -73,6 +112,52 @@
 					that.data = data.data
 				})
 			},
+
+			checkCarType(item) {
+				console.log('item' + item)
+
+				var carType = null
+				this.carType = item.index
+				if (item == null || item.index == 0) {
+					carType = null
+				} else {
+					carType = item.index
+				}
+				var data = {
+					"carType": carType,
+					"pageNum": 1,
+					"pageSize": 10
+				}
+				this.selectCarList(data)
+
+			},
+			selectCarList(data) {
+				var that = this
+				request({
+					url: '/weixin/centalCarList',
+					method: 'get',
+					data: data
+				}).then(function(data) {
+					that.carList = data.data.rows
+				})
+			},
+			scrolltolower() {
+
+				var carType = null
+
+				if (this.carType == null || this.carType == 0) {
+					carType = null
+				} else {
+					carType = this.carType
+				}
+				var data = {
+					"carType": carType,
+					"pageNum": 1,
+					"pageSize": 10
+				}
+				this.selectCarList(data)
+			},
+
 			clickBannerItem(item) {
 				console.info(item)
 			},

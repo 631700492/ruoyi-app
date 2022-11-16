@@ -2,10 +2,10 @@
 	<view class="container">
 		<view class="example">
 			<uni-forms ref="form" :model="user" labelWidth="80px">
-				<uni-forms-item label="用户昵称" name="nickName">
+				<uni-forms-item label="用户昵称" name="nickName" required>
 					<uni-easyinput v-model="user.nickName" placeholder="请输入昵称" />
 				</uni-forms-item>
-				<uni-forms-item label="手机号码" name="phonenumber">
+				<uni-forms-item label="手机号码" name="phonenumber" required>
 					<uni-easyinput v-model="user.phonenumber" placeholder="请输入手机号码" />
 				</uni-forms-item>
 				<uni-forms-item label="邮箱" name="email">
@@ -94,6 +94,8 @@
 							if (res.data.code == 500) {
 								console.log("openId 不存在！ " + res)
 								this.$tab.reLaunch('/pages/register')
+							}else{
+								this.$tab.reLaunch('/pages/index')
 							}
 						}
 
